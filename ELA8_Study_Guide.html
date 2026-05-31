@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ELA 8 Final Exam Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c1018;--surf:#141c28;--surf2:#1a2438;--bdr:#243050;
+  --gold:#c8a84b;--gold2:#e8c96a;--gdim:rgba(200,168,75,.12);
+  --text:#dce3f0;--muted:#7d90b0;--dim:#4e6080;
+  --ok:#27ae60;--err:#e74c3c;--okbg:rgba(39,174,96,.1);--errbg:rgba(231,76,60,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;font-size:16.5px;line-height:1.75;}
+/* HEADER */
+header{background:linear-gradient(160deg,#080e18 0%,#101826 100%);border-bottom:1px solid var(--bdr);padding:2.5rem 2rem 2rem;text-align:center;position:relative;overflow:hidden;}
+header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(200,168,75,.07),transparent);pointer-events:none;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,168,75,.35);padding:.25rem .9rem;border-radius:2px;display:inline-block;margin-bottom:.9rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);color:#f0e8d2;letter-spacing:-.02em;line-height:1.15;margin-bottom:.4rem;}
+h1 em{color:var(--gold);font-style:italic;}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted);letter-spacing:.07em;}
+/* NAV */
+nav{display:flex;background:var(--surf);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,.4);}
+.nb{flex:1;padding:.9rem .5rem;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Playfair Display',serif;font-size:.93rem;cursor:pointer;transition:all .2s;letter-spacing:.02em;}
+.nb:hover{color:var(--text);background:rgba(255,255,255,.02);}
+.nb.on{color:var(--gold);border-bottom-color:var(--gold);background:rgba(200,168,75,.05);}
+/* MAIN */
+.wrap{max-width:960px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+.tab{display:none;}.tab.on{display:block;animation:fup .3s ease;}
+@keyframes fup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* STUDY TABS */
+.strow{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.5rem 0 1.8rem;}
+.st{padding:.4rem 1rem;background:var(--surf);border:1px solid var(--bdr);color:var(--muted);font-family:'Source Serif 4',serif;font-size:.9rem;cursor:pointer;border-radius:3px;transition:all .18s;}
+.st:hover{border-color:var(--gold);color:var(--text);}
+.st.on{background:var(--gdim);border-color:var(--gold);color:var(--gold);}
+.sp{display:none;}.sp.on{display:block;animation:fup .25s ease;}
+/* CARDS */
+.card{background:var(--surf);border:1px solid var(--bdr);border-radius:6px;padding:1.5rem 1.8rem;margin-bottom:1.4rem;}
+.card h2{font-family:'Playfair Display',serif;font-size:1.38rem;color:var(--gold);padding-bottom:.7rem;margin-bottom:.9rem;border-bottom:1px solid var(--bdr);}
+.card h3{font-family:'Playfair Display',serif;font-size:1.02rem;color:#a0bcd8;margin:1.1rem 0 .5rem;}
+.card ul{padding-left:1.5rem;}.card li{margin-bottom:.22rem;color:var(--text);}
+/* GRID */
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.85rem;margin-top:.85rem;}
+.ki{background:var(--surf2);border:1px solid var(--bdr);border-left:3px solid var(--gold);padding:.85rem 1rem;border-radius:3px;}
+.kl{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.22rem;}
+.kv{font-size:.9rem;color:var(--text);}
+/* CHAR GRID */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.8rem;margin-top:.8rem;}
+.cc{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;padding:.9rem 1rem;}
+.cn{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--gold2);font-weight:700;margin-bottom:.45rem;}
+.cl{list-style:none;padding:0;}.cl li{font-size:.85rem;color:var(--text);padding:.12rem 0 .12rem .9rem;position:relative;}
+.cl li::before{content:'·';position:absolute;left:0;color:var(--gold);}
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.9rem;}
+.tbl th{background:var(--surf2);padding:.6rem .9rem;text-align:left;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:2px solid var(--bdr);}
+.tbl td{padding:.7rem .9rem;border-bottom:1px solid var(--bdr);color:var(--text);}
+.tbl tr:last-child td{border-bottom:none;}
+/* HL BOX */
+.hl{background:var(--gdim);border-left:3px solid var(--gold);padding:.85rem 1.1rem;border-radius:0 4px 4px 0;margin:.85rem 0;}
+.hl p{font-style:italic;color:var(--text);}
+/* VOCAB TABLE */
+.vtbl{width:100%;border-collapse:collapse;margin-top:.85rem;}
+.vtbl th{background:var(--surf2);padding:.6rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-bottom:2px solid var(--gold);text-align:left;}
+.vtbl td{padding:.6rem .9rem;border-bottom:1px solid var(--bdr);font-size:.9rem;}
+.vtbl tr:hover td{background:rgba(200,168,75,.04);}
+.vw{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold2);font-weight:700;}
+/* QUIZ START */
+.qstart{text-align:center;padding:3.5rem 1rem;}
+.qstart h2{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.7rem;}
+.qstart p{color:var(--muted);margin-bottom:1.8rem;}
+.stats{display:flex;justify-content:center;gap:2.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.stat .n{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);line-height:1;}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;}
+.modes{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.mc{background:var(--surf);border:2px solid var(--bdr);border-radius:7px;padding:1.2rem 1.5rem;cursor:pointer;transition:all .18s;text-align:center;min-width:148px;}
+.mc:hover{border-color:var(--gold);}
+.mc.sel{border-color:var(--gold);background:var(--gdim);}
+.mc .mi{font-size:1.7rem;margin-bottom:.35rem;}
+.mc .mn{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text);}
+.mc .md{font-size:.8rem;color:var(--muted);}
+/* BUTTONS */
+.btnp{background:var(--gold);color:#0c1018;border:none;padding:.8rem 2.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;cursor:pointer;border-radius:4px;transition:all .18s;}
+.btnp:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 18px rgba(200,168,75,.28);}
+.btns{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:.65rem 1.6rem;font-family:'Playfair Display',serif;font-size:.93rem;cursor:pointer;border-radius:4px;transition:all .18s;}
+.btns:hover{background:var(--gdim);}
+/* PROGRESS */
+.prog{margin-bottom:1.5rem;}
+.pt{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:.4rem;}
+.pb{background:var(--surf2);height:4px;border-radius:2px;}
+.pf{background:var(--gold);height:100%;border-radius:2px;transition:width .4s ease;}
+/* QUESTION */
+.qc{background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:1.7rem 1.9rem;margin-bottom:1.1rem;}
+.qtag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);background:var(--gdim);padding:.18rem .6rem;border-radius:2px;margin-bottom:.75rem;}
+.qnum{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);margin-bottom:.3rem;}
+.qt{font-family:'Playfair Display',serif;font-size:1.12rem;color:#f0e8d2;line-height:1.58;margin-bottom:1.3rem;}
+.opts{display:flex;flex-direction:column;gap:.65rem;}
+.opt{display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1.05rem;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:4px;cursor:pointer;transition:all .17s;width:100%;font-family:'Source Serif 4',serif;font-size:.97rem;color:var(--text);line-height:1.5;text-align:left;}
+.opt:hover:not(:disabled){border-color:#4a7bbb;background:rgba(74,123,187,.08);}
+.ol{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);background:var(--surf);border:1px solid var(--bdr);width:23px;height:23px;min-width:23px;display:flex;align-items:center;justify-content:center;border-radius:3px;margin-top:1px;font-weight:500;transition:all .17s;}
+.opt.ok{border-color:var(--ok);background:var(--okbg);}
+.opt.ok .ol{background:var(--ok);color:#fff;border-color:var(--ok);}
+.opt.bad{border-color:var(--err);background:var(--errbg);}
+.opt.bad .ol{background:var(--err);color:#fff;border-color:var(--err);}
+.opt.off{cursor:not-allowed;opacity:.5;}
+.opt.ok,.opt.bad{opacity:1!important;}
+.fb{margin-top:.85rem;padding:.8rem 1.05rem;border-radius:4px;font-size:.9rem;display:none;}
+.fb.ok{background:var(--okbg);border:1px solid var(--ok);color:var(--ok);display:block;}
+.fb.bad{background:var(--errbg);border:1px solid var(--err);color:#f18080;display:block;}
+.qa{display:flex;gap:.85rem;justify-content:flex-end;margin-top:.9rem;}
+/* SA */
+.sat{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:4px;padding:.9rem;color:var(--text);font-family:'Source Serif 4',serif;font-size:.97rem;line-height:1.7;resize:vertical;min-height:110px;transition:border-color .18s;}
+.sat:focus{outline:none;border-color:var(--gold);}
+.sh{background:var(--gdim);border:1px solid rgba(200,168,75,.3);border-radius:4px;padding:.9rem 1.05rem;margin-top:.75rem;display:none;}
+.sh.vis{display:block;animation:fup .2s ease;}
+.sht{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;}
+.shb{font-size:.9rem;color:var(--text);line-height:1.8;}
+/* RESULTS */
+.rc{background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:2.8rem 2rem;text-align:center;}
+.ring{width:130px;height:130px;border-radius:50%;border:4px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1.7rem;background:var(--gdim);}
+.rn{font-family:'Playfair Display',serif;font-size:2.3rem;color:var(--gold);line-height:1;}
+.rl{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.rmsg{font-family:'Playfair Display',serif;font-size:1.5rem;color:#f0e8d2;margin-bottom:.4rem;}
+.rsub{color:var(--muted);font-size:.93rem;}
+.rbr{display:flex;gap:.85rem;justify-content:center;margin-top:1.4rem;flex-wrap:wrap;}
+.rl2{text-align:left;margin-top:2rem;}
+.rl2 h3{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.05rem;margin-bottom:.75rem;}
+.ri{padding:.7rem .9rem;border-bottom:1px solid var(--bdr);display:flex;gap:.85rem;}
+.riq{font-size:.87rem;color:var(--text);}.ria{font-size:.82rem;color:var(--muted);margin-top:.18rem;}
+@media(max-width:600px){
+  .wrap{padding:1rem 1rem 3rem;}
+  .card{padding:1.1rem 1rem;}
+  .kgrid,.cgrid{grid-template-columns:1fr 1fr;}
+  nav{flex-wrap:wrap;}.nb{font-size:.78rem;padding:.65rem .4rem;}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">ELA 8 · Semester 2 · Final Exam</div>
+  <h1>Study Guide <em>&amp; Quiz</em></h1>
+  <p class="sub">35 MCQ · 15 Matching · 5 Short Answer &nbsp;|&nbsp; Practice: 50+ MC · 10 SA · 22 Vocab</p>
+</header>
+<nav>
+  <button class="nb on" onclick="goTab('guide',this)">📖 Study Guide</button>
+  <button class="nb" onclick="goTab('quiz',this)">✏️ Quiz</button>
+  <button class="nb" onclick="goTab('vocab',this)">📚 Vocab Drill</button>
+</nav>
+<div class="wrap">
+
+<!-- ════ STUDY GUIDE ════ -->
+<div id="t-guide" class="tab on">
+  <div class="strow">
+    <button class="st on" onclick="goPanel('out',this)">The Outsiders</button>
+    <button class="st" onclick="goPanel('tdg',this)">Most Dangerous Game</button>
+    <button class="st" onclick="goPanel('brd',this)">Borders</button>
+    <button class="st" onclick="goPanel('rul',this)">Rules of the Game</button>
+    <button class="st" onclick="goPanel('lit',this)">Literary Devices</button>
+    <button class="st" onclick="goPanel('voc',this)">Vocabulary</button>
+  </div>
+
+  <!-- OUTSIDERS -->
+  <div id="p-out" class="sp on">
+    <div class="card">
+      <h2>📖 Plot Structure</h2>
+      <div class="kgrid">
+        <div class="ki"><div class="kl">Exposition</div><div class="kv">Ponyboy, the Greasers, and the Socs rivalry are introduced</div></div>
+        <div class="ki"><div class="kl">Rising Action</div><div class="kv">Bob's death; Johnny &amp; Ponyboy hide in the church; fire rescue</div></div>
+        <div class="ki"><div class="kl">Climax</div><div class="kv">The rumble; Johnny's and Dally's deaths</div></div>
+        <div class="ki"><div class="kl">Falling Action</div><div class="kv">Ponyboy recovers; Randy's visit; picking up the broken glass</div></div>
+        <div class="ki"><div class="kl">Resolution</div><div class="kv">Ponyboy writes his English essay — the novel itself is that essay</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>⭐ Significant Events</h2>
+      <h3>Death of Bob</h3>
+      <ul><li>Bob's father never disciplined him → no boundaries or consequences</li><li>Forces Johnny and Ponyboy to flee; a major turning point</li></ul>
+      <h3>Randy's Visit &amp; Conversation</h3>
+      <ul><li>Randy admits fighting won't change anything</li><li>Shows not all Socs are purely bad — begins to break stereotypes</li></ul>
+      <h3>🔑 Picking Up the Broken Bottle (KEY SCENE)</h3>
+      <div class="hl"><p>The bottle could be used as a weapon, but Ponyboy picks up the broken glass so no one will get hurt. This proves he still retains his innocence and has grown mentally stronger — without becoming cold or violent.</p></div>
+      <h3>The English Essay</h3>
+      <ul><li>Ponyboy writes about Dally, Johnny, and himself</li><li>Purpose: to break down social barriers and stereotypes</li><li>The entire novel is framed as this essay</li></ul>
+      <h3>How Ponyboy Changes</h3>
+      <ul><li>Hardens mentally — stays calm under pressure</li><li>Still retains his innocence (picking up the glass)</li><li>Grew mentally stronger through loss and trauma</li><li>Understands "Nothing Gold Can Stay"</li></ul>
+    </div>
+    <div class="card">
+      <h2>👥 Characters</h2>
+      <div class="cgrid">
+        <div class="cc"><div class="cn">Ponyboy Curtis</div><ul class="cl"><li>Narrator, protagonist</li><li>Sensitive &amp; intellectual</li><li>Grows mentally stronger</li><li>Retains innocence</li></ul></div>
+        <div class="cc"><div class="cn">Darry Curtis</div><ul class="cl"><li>Eldest brother</li><li>Strict with Ponyboy</li><li>Strict because he <em>cares</em></li><li>Gave up college for family</li></ul></div>
+        <div class="cc"><div class="cn">Sodapop Curtis</div><ul class="cl"><li>Looks like a movie star</li><li>Easygoing and funny</li><li>Not a serious character</li><li>Peacemaker in the family</li></ul></div>
+        <div class="cc"><div class="cn">Johnny Cade</div><ul class="cl"><li>Jumpy and nervous</li><li>Small and quiet</li><li>The gang's "pet"</li><li>Looks up to Dally</li></ul></div>
+        <div class="cc"><div class="cn">Dally Winston</div><ul class="cl"><li>Toughest Greaser</li><li>Protective of Johnny</li><li>Hardened by life</li></ul></div>
+        <div class="cc"><div class="cn">Two-Bit Matthews</div><ul class="cl"><li>Always joking</li><li>Carries a switchblade</li><li>"Puts his two bits in"</li></ul></div>
+        <div class="cc"><div class="cn">Cherry Valance</div><ul class="cl"><li>Soc; Bob's girlfriend</li><li>Shares sunsets with Ponyboy</li><li>Afraid she'd fall for Dally</li></ul></div>
+        <div class="cc"><div class="cn">Bob Sheldon</div><ul class="cl"><li>Soc; wealthy, aggressive</li><li>Father never disciplined him</li><li>Rings left scars on Johnny</li></ul></div>
+      </div>
+      <h3>Reasons to Fight</h3>
+      <table class="tbl">
+        <tr><th>Character</th><th>Reason</th></tr>
+        <tr><td>Ponyboy</td><td>Self-defense only — the only good reason</td></tr>
+        <tr><td>Sodapop</td><td>Like a contest; for fun</td></tr>
+        <tr><td>Steve</td><td>Hatred; wants to beat their heads</td></tr>
+        <tr><td>Darry</td><td>Pride; wants to show his strength</td></tr>
+        <tr><td>Two-Bit</td><td>Conformity</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>🌅 Themes &amp; Foreshadowing</h2>
+      <h3>"Nothing Gold Can Stay" — Robert Frost</h3>
+      <div class="hl"><p>Beauty and innocence don't last forever — cherish the moment and stay gold. Johnny's dying words reference this poem. Ponyboy "staying gold" = keeping innocence even after hardship.</p></div>
+      <h3>Stereotypes</h3>
+      <ul><li>Socs vs. Greasers conflict is driven by stereotypes → misunderstanding and violence</li><li>Cherry &amp; Ponyboy watching sunsets together challenges stereotypes</li></ul>
+      <h3>Foreshadowing</h3>
+      <ul><li><strong>Cigarette in the church</strong> → foreshadows the fire</li><li><strong>Ponyboy says Johnny would stab someone</strong> → foreshadows Bob's death</li></ul>
+      <h3>Conflict</h3>
+      <ul><li><strong>Internal:</strong> Belonging and identity; grief and guilt</li><li><strong>External:</strong> Socs vs. Greasers</li></ul>
+    </div>
+    <div class="card">
+      <h2>🔑 Symbols &amp; Motifs (Matching!)</h2>
+      <table class="tbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td><strong>Greaser Hair</strong></td><td>Identity and belonging to the group</td></tr>
+        <tr><td><strong>Watching Sunsets</strong></td><td>Different backgrounds can share common emotions and humanity</td></tr>
+        <tr><td><strong>Blue Mustang</strong></td><td>Socs' wealth and materialism</td></tr>
+        <tr><td><strong>Bob's Rings</strong></td><td>Wealth and physical power (left scars on Johnny)</td></tr>
+        <tr><td><strong>Two-Bit's Switchblade</strong></td><td>Need to protect oneself in a violent world</td></tr>
+      </table>
+    </div>
+  </div><!-- /outsiders -->
+
+  <!-- MOST DANGEROUS GAME -->
+  <div id="p-tdg" class="sp">
+    <div class="card">
+      <h2>🎯 The Most Dangerous Game</h2>
+      <h3>Storyline</h3>
+      <p>Sanger Rainsford falls off a yacht and swims to Ship-Trap Island. General Zaroff — who grew bored hunting animals — now hunts humans for sport. Rainsford becomes his prey and must survive three days to win freedom.</p>
+      <h3>Characters</h3>
+      <div class="kgrid" style="margin-top:.8rem">
+        <div class="ki"><div class="kl">Rainsford</div><div class="kv">Skilled hunter turned prey; survives using intelligence and skill</div></div>
+        <div class="ki"><div class="kl">General Zaroff</div><div class="kv">Hunts humans to cure boredom; believes the strong deserve to dominate the weak</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>⚔️ Conflicts &amp; Comparison (FRQ)</h2>
+      <ul><li><strong>External — Hunter vs. Huntee:</strong> Rainsford hunted by Zaroff</li><li><strong>Internal — Zaroff's battle:</strong> Boredom from hunting ordinary animals</li><li><strong>Moral conflict:</strong> Is it ethical to take a human life for sport?</li></ul>
+      <div class="hl"><p>Zaroff believes the stronger, more intelligent person deserves to be superior to the weaker. He settled on the island specifically to hunt humans as the "perfect prey."</p></div>
+      <h3>Foreshadowing</h3>
+      <ul><li>"Can animals truly feel fear?" → hints that his prey will be humans, who can feel fear</li><li>The island name "Ship-Trap Island" foreshadows danger</li></ul>
+      <h3>Compare: Rainsford vs. Zaroff</h3>
+      <table class="tbl">
+        <tr><th>Rainsford</th><th>Zaroff</th></tr>
+        <tr><td>Hunts animals for sport</td><td>Hunts humans for sport</td></tr>
+        <tr><td>Values human life</td><td>Disregards human life</td></tr>
+        <tr><td>Morally grounded</td><td>Morally corrupt</td></tr>
+        <tr><td>Becomes the prey</td><td>Is eventually beaten</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BORDERS -->
+  <div id="p-brd" class="sp">
+    <div class="card">
+      <h2>🚧 Borders</h2>
+      <h3>Storyline</h3>
+      <p>A young boy narrates his and his mother's experience being trapped at the Canadian-American border. His mother — a Blackfoot woman — refuses to identify as either Canadian or American; she insists she is Blackfoot. The story is recalled from the past.</p>
+      <h3>Narrative Perspective (First Person)</h3>
+      <div class="hl"><p>"Often, a literary work that is narrated by one of the main characters creates limitations in terms of the readers' ability to objectively analyze other characters." — We only get the son's POV. We cannot fully know why the mother holds so firmly to her identity.</p></div>
+      <table class="tbl">
+        <tr><th>Gain from 1st Person</th><th>Limitation of 1st Person</th></tr>
+        <tr><td>Empathy with the narrator</td><td>Can't fully understand the mother's inner motivations</td></tr>
+        <tr><td>Emotional closeness to events</td><td>Can't objectively analyze other characters</td></tr>
+      </table>
+      <h3>Key Points</h3>
+      <ul><li>Story told through <strong>flashbacks</strong> — narrator recalls the past</li><li>Family pressured by <strong>media and reporters</strong></li><li>Theme: cultural identity, belonging, the right to name oneself</li></ul>
+    </div>
+  </div>
+
+  <!-- RULES OF THE GAME -->
+  <div id="p-rul" class="sp">
+    <div class="card">
+      <h2>♟️ Rules of the Game</h2>
+      <h3>Storyline</h3>
+      <p>Waverly Jong, a Chinese-American girl in San Francisco's Chinatown, discovers chess and becomes a prodigy. She battles her traditional, prideful Chinese mother, Lindo Jong, for independence and recognition.</p>
+      <div class="hl"><p><strong>Central conflict:</strong> Traditional mother vs. open-minded daughter. Lindo uses Waverly's chess success for her own public pride without genuinely supporting her daughter.</p></div>
+      <h3>"Bite Back Your Tongue" — The Key Lesson</h3>
+      <ul><li>Be patient and restrained — power comes from silence</li><li>What you desire will eventually come if you wait</li><li>In chess: observe, wait, then strike at the right moment</li></ul>
+    </div>
+    <div class="card">
+      <h2>🔑 Symbolism &amp; Characters</h2>
+      <table class="tbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td><strong>Wind</strong></td><td>The invisible inner power and strength of Waverly (protagonist)</td></tr>
+        <tr><td><strong>Chess</strong></td><td>The power struggle and conflict between Waverly and her mother</td></tr>
+      </table>
+      <h3>Character Types (know all four)</h3>
+      <div class="kgrid" style="margin-top:.8rem">
+        <div class="ki"><div class="kl">Protagonist</div><div class="kv">The main character of the story</div></div>
+        <div class="ki"><div class="kl">Antagonist</div><div class="kv">The character who opposes the protagonist (villain)</div></div>
+        <div class="ki"><div class="kl">Round Character</div><div class="kv">Complex; changes significantly. Ex: Ponyboy</div></div>
+        <div class="ki"><div class="kl">Flat Character</div><div class="kv">Does not change much. Ex: Sodapop, Two-Bit</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LITERARY DEVICES -->
+  <div id="p-lit" class="sp">
+    <div class="card">
+      <h2>📝 Literary Devices</h2>
+      <h3>Narrative POV by Story</h3>
+      <table class="tbl">
+        <tr><th>Story</th><th>POV</th></tr>
+        <tr><td>The Outsiders</td><td>First person (Ponyboy)</td></tr>
+        <tr><td>The Most Dangerous Game</td><td>Third person</td></tr>
+        <tr><td>Borders</td><td>First person (son/narrator)</td></tr>
+        <tr><td>Rules of the Game</td><td>First person (Waverly)</td></tr>
+      </table>
+      <h3>Characterization</h3>
+      <div class="kgrid" style="margin-top:.8rem">
+        <div class="ki"><div class="kl">Direct Characterization</div><div class="kv">Narrator directly describes the character. <em>"He was tall and mean."</em></div></div>
+        <div class="ki"><div class="kl">Indirect Characterization</div><div class="kv">Character revealed through words, actions, and how others react to them.</div></div>
+      </div>
+      <h3>Figurative Language</h3>
+      <table class="tbl" style="margin-top:.8rem">
+        <tr><th>Device</th><th>Definition</th></tr>
+        <tr><td><strong>Simile</strong></td><td>Comparison using "like" or "as"</td></tr>
+        <tr><td><strong>Metaphor</strong></td><td>Direct comparison — one thing IS another</td></tr>
+        <tr><td><strong>Hyperbole</strong></td><td>Extreme exaggeration for effect</td></tr>
+        <tr><td><strong>Alliteration</strong></td><td>Repetition of same consonant sound at start of words</td></tr>
+        <tr><td><strong>Personification</strong></td><td>Giving human qualities to non-human things</td></tr>
+        <tr><td><strong>Foreshadowing</strong></td><td>Hints or clues about future events</td></tr>
+        <tr><td><strong>Flashback</strong></td><td>Telling events that happened in the past ← This is the definition on the exam!</td></tr>
+      </table>
+      <h3>Writing Reminders</h3>
+      <ul style="margin-top:.75rem">
+        <li>Avoid weak words: <em>I, you, might, may, can</em></li>
+        <li>MLA in-text citations: (Author page#)</li>
+        <li>Embed quotations seamlessly — don't just drop them in</li>
+        <li>Use objective/academic language — no casual tone</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div id="p-voc" class="sp">
+    <div class="card">
+      <h2>📚 All 22 Vocabulary Words</h2>
+      <p style="color:var(--muted);margin-bottom:.9rem;font-size:.9rem">These appear as MCQ — you must choose the correct definition.</p>
+      <table class="vtbl">
+        <tr><th>Word</th><th>Definition</th></tr>
+        <tr><td><span class="vw">Unfathomable</span></td><td>Impossible to fully understand or explore</td></tr>
+        <tr><td><span class="vw">Gingerly</span></td><td>In a careful or cautious manner</td></tr>
+        <tr><td><span class="vw">Nonchalantly</span></td><td>In a casually calm and relaxed manner</td></tr>
+        <tr><td><span class="vw">Aloofness</span></td><td>A state of being distant, remote, or withdrawn</td></tr>
+        <tr><td><span class="vw">Contemptuously</span></td><td>Without respect; in a scornful, disdainful manner</td></tr>
+        <tr><td><span class="vw">Premonition</span></td><td>A strong feeling that something is about to happen</td></tr>
+        <tr><td><span class="vw">Indignant</span></td><td>Feeling angry or annoyed at what seems unfair</td></tr>
+        <tr><td><span class="vw">Conviction</span></td><td>A strong belief; also a formal declaration of guilt</td></tr>
+        <tr><td><span class="vw">Implore</span></td><td>To beg desperately or plead urgently</td></tr>
+        <tr><td><span class="vw">Exploit</span></td><td>To use someone unfairly for one's own benefit</td></tr>
+        <tr><td><span class="vw">Resemblance</span></td><td>Similarity in appearance or character</td></tr>
+        <tr><td><span class="vw">Scarce</span></td><td>Hard to find; limited in supply</td></tr>
+        <tr><td><span class="vw">Conformity</span></td><td>Following rules, norms, or the behavior of others</td></tr>
+        <tr><td><span class="vw">Menace</span></td><td>A threat or source of danger</td></tr>
+        <tr><td><span class="vw">Frankly</span></td><td>In an honest and direct manner</td></tr>
+        <tr><td><span class="vw">Liable</span></td><td>Legally responsible; likely to do or suffer something</td></tr>
+        <tr><td><span class="vw">Acquit</span></td><td>To officially declare someone not guilty</td></tr>
+        <tr><td><span class="vw">Vast</span></td><td>Of very great extent or size</td></tr>
+        <tr><td><span class="vw">Palpable</span></td><td>Able to be clearly felt or obviously noticed</td></tr>
+        <tr><td><span class="vw">Opaque</span></td><td>Not transparent; difficult to understand</td></tr>
+        <tr><td><span class="vw">Benefactor</span></td><td>A person who gives help or money to others</td></tr>
+        <tr><td><span class="vw">Pungent</span></td><td>Having a strong, sharp smell or taste</td></tr>
+      </table>
+    </div>
+  </div>
+</div><!-- /guide -->
+
+<!-- ════ QUIZ ════ -->
+<div id="t-quiz" class="tab">
+  <div id="q-start" class="qstart">
+    <h2>Quiz Practice</h2>
+    <p>Test your knowledge with MC and short answer questions.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">50</div><div class="l">MC Questions</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">Short Answer</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Topics</div></div>
+    </div>
+    <div class="modes">
+      <div class="mc sel" id="m-all" onclick="selMode('all')"><div class="mi">📋</div><div class="mn">Full Quiz</div><div class="md">50 MC + 10 SA</div></div>
+      <div class="mc" id="m-mc" onclick="selMode('mc')"><div class="mi">🔤</div><div class="mn">MC Only</div><div class="md">50 questions</div></div>
+      <div class="mc" id="m-sa" onclick="selMode('sa')"><div class="mi">✍️</div><div class="mn">Short Answer</div><div class="md">10 questions</div></div>
+    </div>
+    <button class="btnp" onclick="startQuiz()">Start Quiz →</button>
+  </div>
+  <div id="q-active" style="display:none">
+    <div class="prog"><div class="pt"><span id="plbl">Q 1</span><span id="psc">Score: 0</span></div><div class="pb"><div class="pf" id="pbar" style="width:0%"></div></div></div>
+    <div class="qc" id="qcard"></div>
+    <div class="qa">
+      <button class="btns" id="bhint" style="display:none" onclick="toggleHint()">Show Answer</button>
+      <button class="btnp" id="bnext" style="display:none" onclick="nextQ()">Next →</button>
+    </div>
+  </div>
+  <div id="q-res" style="display:none">
+    <div class="rc">
+      <div class="ring"><div class="rn" id="rn">—</div><div class="rl">/ <span id="rt">—</span> correct</div></div>
+      <div class="rmsg" id="rmsg"></div><div class="rsub" id="rsub"></div>
+      <div class="rbr"><button class="btnp" onclick="restartQ()">Try Again</button><button class="btns" onclick="goTab('guide',document.querySelectorAll('.nb')[0])">📖 Study Guide</button></div>
+      <div class="rl2" id="rlist"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ VOCAB DRILL ════ -->
+<div id="t-vocab" class="tab">
+  <div id="v-start" class="qstart">
+    <h2>Vocabulary Drill</h2>
+    <p>22 words, 4 choices each. Pick the correct definition!</p>
+    <div class="stats"><div class="stat"><div class="n">22</div><div class="l">Words</div></div></div>
+    <button class="btnp" onclick="startVocab()">Start Drill →</button>
+  </div>
+  <div id="v-active" style="display:none">
+    <div class="prog"><div class="pt"><span id="vplbl">Word 1 of 22</span><span id="vpsc">Score: 0</span></div><div class="pb"><div class="pf" id="vpbar" style="width:0%"></div></div></div>
+    <div class="qc" id="vcard"></div>
+    <div class="qa"><button class="btnp" id="vbnext" style="display:none" onclick="nextVocab()">Next →</button></div>
+  </div>
+  <div id="v-res" style="display:none">
+    <div class="rc">
+      <div class="ring"><div class="rn" id="vrn">—</div><div class="rl">/ 22 correct</div></div>
+      <div class="rmsg" id="vrmsg"></div>
+      <div class="rbr"><button class="btnp" onclick="startVocab()">Try Again</button><button class="btns" onclick="goPanel('voc',null);goTab('guide',document.querySelectorAll('.nb')[0])">📚 Study List</button></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<script>
+/* ── NAV ── */
+function goTab(id,btn){
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(e=>e.classList.remove('on'));
+  document.getElementById('t-'+id).classList.add('on');
+  if(btn)btn.classList.add('on');
+}
+function goPanel(id,btn){
+  document.querySelectorAll('.sp').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.st').forEach(e=>e.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  if(btn)btn.classList.add('on');
+  else{document.querySelectorAll('.st').forEach(b=>{if(b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('on');});}
+}
+
+/* ── DATA ── */
+const MC=[
+  // OUTSIDERS (20)
+  {s:"The Outsiders",q:"What does Ponyboy picking up the broken glass symbolize about his character?",o:["He became more violent and aggressive","He still retains his innocence and cares for others","He is destroying evidence from the fight","He wants to collect weapons for later"],a:1},
+  {s:"The Outsiders",q:"Why does Ponyboy write his English essay at the end of the novel?",o:["As punishment for failing grades","To impress his teacher and earn a better grade","To share the story of Dally, Johnny, and himself and break down social stereotypes","To prove he is smarter than the Socs"],a:2},
+  {s:"The Outsiders",q:"What is the central theme of 'Nothing Gold Can Stay' in The Outsiders?",o:["Gold and money are unimportant in life","Beauty and innocence don't last, so cherish the moment and stay gold","Nature is more valuable than society","Staying wealthy means staying powerful"],a:1},
+  {s:"The Outsiders",q:"Which character is described as looking like a movie star?",o:["Ponyboy","Dally","Sodapop","Johnny"],a:2},
+  {s:"The Outsiders",q:"What does the Blue Mustang symbolize?",o:["Speed and danger in street life","The Greasers' desire for freedom","The Socs' wealth and materialism","Bob's personal identity"],a:2},
+  {s:"The Outsiders",q:"Why is Darry strict with Ponyboy?",o:["He is naturally controlling","He cares deeply about Ponyboy and worries about his future","He wants control of the family's money","He is jealous of Ponyboy's grades"],a:1},
+  {s:"The Outsiders",q:"What does Two-Bit's switchblade symbolize?",o:["His violent personality","His need to protect himself in a dangerous world","His loyalty to the gang","His friendship with Dally"],a:1},
+  {s:"The Outsiders",q:"According to Ponyboy, what is the ONLY good reason to fight?",o:["For pride and honor","For fun like a sport","Self-defense","For conformity"],a:2},
+  {s:"The Outsiders",q:"Why does Cherry want to stay away from Dally?",o:["She thinks he is unattractive","She fears he will hurt her physically","She is worried she will fall in love with him","Her parents forbid her from talking to Greasers"],a:2},
+  {s:"The Outsiders",q:"What do the Greaser hairstyles symbolize?",o:["Rebellion against all authority","Identity and belonging to the group","Their poverty","Their toughness"],a:1},
+  {s:"The Outsiders",q:"What does the cigarette in the church foreshadow?",o:["Someone will become addicted to smoking","There will be a fire","The church will be vandalized","Ponyboy will quit smoking"],a:1},
+  {s:"The Outsiders",q:"What does watching sunsets together symbolize for Cherry and Ponyboy?",o:["That Greasers and Socs can fall in love","People from different backgrounds can share common emotions and humanity","Ponyboy wishes he were a Soc","Nature unites all people"],a:1},
+  {s:"The Outsiders",q:"What is Johnny's role in the Greaser gang?",o:["The fearless leader","The toughest fighter","The gang's pet — everyone protects him","The lookout and informant"],a:2},
+  {s:"The Outsiders",q:"What do Bob's rings symbolize?",o:["Love and commitment to Cherry","Bond among the Socs","Wealth and physical power","His cultural heritage"],a:2},
+  {s:"The Outsiders",q:"How do stereotypes function in The Outsiders?",o:["They help characters understand each other","They lead to misunderstanding and conflict","They are broken down in the first chapter","They only affect Greasers"],a:1},
+  {s:"The Outsiders",q:"What is Ponyboy's main internal conflict?",o:["He wants to become a Soc","He struggles with belonging and identity after losing close friends","He is deciding whether to go to college","He has feelings for Cherry"],a:1},
+  {s:"The Outsiders",q:"What poem does Johnny reference in his final message to Ponyboy?",o:["'The Road Not Taken'","'Nothing Gold Can Stay'","'O Captain! My Captain!'","'Stopping by Woods on a Snowy Evening'"],a:1},
+  {s:"The Outsiders",q:"Sodapop is easygoing and does not change throughout the novel. What type of character is he?",o:["Round character","Protagonist","Flat character","Antagonist"],a:2},
+  {s:"The Outsiders",q:"What does Ponyboy's household represent in the story?",o:["Extreme poverty and neglect","A normal working-class family — not rich","A wealthy family hiding struggles","A completely broken home"],a:1},
+  {s:"The Outsiders",q:"Why is Randy's visit to Ponyboy significant?",o:["Randy challenges Ponyboy to another fight","Randy admits fighting won't change anything, showing Socs also suffer","Randy wants to join the Greasers","Randy apologizes for Bob's actions"],a:1},
+  // MOST DANGEROUS GAME (7)
+  {s:"Most Dangerous Game",q:"What is General Zaroff's main internal conflict?",o:["He feels guilty about the people he hunted","He has grown bored hunting ordinary animals","He wants to return to civilization","He is afraid Rainsford will defeat him"],a:1},
+  {s:"Most Dangerous Game",q:"What does Zaroff believe about the strong versus the weak?",o:["The weak should be protected by society","Everyone is fundamentally equal","The stronger person deserves to be superior to the weaker","Hunting builds empathy for the hunted"],a:2},
+  {s:"Most Dangerous Game",q:"What is the primary external conflict in 'The Most Dangerous Game'?",o:["Man vs. nature","Hunter vs. huntee — Rainsford hunted by Zaroff","Man vs. society's moral rules","Man vs. his conscience"],a:1},
+  {s:"Most Dangerous Game",q:"Why did Zaroff settle on his remote island?",o:["To conduct scientific research","To escape criminal charges","To hunt humans for sport and cure his boredom","To build a private paradise"],a:2},
+  {s:"Most Dangerous Game",q:"What does 'Can animals truly feel fear?' foreshadow?",o:["Zaroff will face dangerous animals","Rainsford will tame wild animals","Humans will be hunted and feel genuine fear","The island has no wildlife"],a:2},
+  {s:"Most Dangerous Game",q:"How is Rainsford similar to Zaroff at the beginning of the story?",o:["Both oppose all forms of hunting","Both are skilled hunters who enjoy the thrill of the hunt","Both believe the weak deserve protection","Both have lived on islands their whole lives"],a:1},
+  {s:"Most Dangerous Game",q:"What central moral question does the story raise?",o:["Whether hunting with modern weapons is ethical","Whether it is ever justifiable to take a human life for sport","Whether animals should have legal rights","Whether hunters should share their skills"],a:1},
+  // BORDERS (5)
+  {s:"Borders",q:"What narrative perspective is used in 'Borders'?",o:["Third person omniscient","Third person limited","First person — the young son's point of view","Second person"],a:2},
+  {s:"Borders",q:"What is a key limitation of the first-person narration in 'Borders'?",o:["The story is told out of order","Readers only get one perspective and can't fully understand others' motivations","The narrator lies to the reader","The language is too complex"],a:1},
+  {s:"Borders",q:"What literary technique does the author use to tell the story?",o:["Stream of consciousness","Allegory","Flashbacks — the narrator recalls past events","Dramatic monologue"],a:2},
+  {s:"Borders",q:"What creates additional pressure on the narrator and his mother?",o:["The Canadian government threatening arrest","Media and reporters","Angry travelers","School officials"],a:1},
+  {s:"Borders",q:"Why does the mother refuse to identify as Canadian or American?",o:["She lacks proper documents","She is protesting immigration laws","She identifies as Blackfoot and insists on that specific identity","She fears deportation"],a:2},
+  // RULES OF THE GAME (5)
+  {s:"Rules of the Game",q:"What is the central conflict in 'Rules of the Game'?",o:["Waverly versus her chess opponents","A traditional Chinese mother versus her independent-minded daughter","Chinese culture clashing with American culture","Rich families versus poor families"],a:1},
+  {s:"Rules of the Game",q:"What does the wind symbolize?",o:["Change and uncertainty","The invisible inner power and strength of the protagonist","The clash between Eastern and Western culture","Waverly's desire to escape"],a:1},
+  {s:"Rules of the Game",q:"What does chess symbolize?",o:["Waverly's natural intelligence","The traditional values of Chinese culture","The power struggle and conflict between Waverly and her mother","Life's unpredictability"],a:2},
+  {s:"Rules of the Game",q:"What lesson does Waverly learn from 'biting back your tongue'?",o:["Never speak your mind","Be patient and restrained — what you desire will eventually come to you","Always obey parents without question","Never argue with elders in public"],a:1},
+  {s:"Rules of the Game",q:"How does Waverly's mother use her chess success?",o:["To earn money for the family","To show off her own pride publicly, without genuinely supporting Waverly","To teach Waverly discipline","To help Waverly get into a prestigious school"],a:1},
+  // LITERARY DEVICES (6)
+  {s:"Literary Devices",q:"What is direct characterization?",o:["A character changes throughout the story","The narrator directly tells you what a character is like","A character's personality is shown through actions and dialogue","Two characters are compared directly"],a:1},
+  {s:"Literary Devices",q:"Which literary technique involves telling events that happened in the past?",o:["Foreshadowing","Flashback","Stream of consciousness","In medias res"],a:1},
+  {s:"Literary Devices",q:"What type of character undergoes significant change throughout a story?",o:["Flat character","Protagonist","Antagonist","Round character"],a:3},
+  {s:"Literary Devices",q:"What is indirect characterization?",o:["The author directly states what a character is like","A character's personality is revealed through words, actions, and how others react","A narrator describes another character's full backstory","Two characters share the same traits"],a:1},
+  {s:"Literary Devices",q:"Which narrative POV is most LIMITED in showing other characters' inner thoughts?",o:["Third person omniscient","Third person limited","First person","Omniscient narrator"],a:2},
+  {s:"Literary Devices",q:"In what narrative perspective is 'The Outsiders' written?",o:["Third person omniscient","Third person limited","First person","Second person"],a:2},
+  // VOCAB (13)
+  {s:"Vocabulary",q:"What does 'unfathomable' mean?",o:["Very large and impossible to measure","Impossible to fully understand or explore","In a careless manner","A strong feeling of danger"],a:1},
+  {s:"Vocabulary",q:"What does 'premonition' mean?",o:["A strong memory of a past event","A formal legal punishment","A strong feeling that something is about to happen","A literary comparison device"],a:2},
+  {s:"Vocabulary",q:"What does 'indignant' mean?",o:["Feeling calm and accepting","Feeling proud of success","Feeling shy and embarrassed","Feeling angry about unfair treatment"],a:3},
+  {s:"Vocabulary",q:"What does 'conformity' mean?",o:["Rebelling against authority","A state of confusion","Following rules, norms, or the behavior of others","Being completely independent"],a:2},
+  {s:"Vocabulary",q:"What does 'acquit' mean?",o:["To formally charge someone with a crime","To sentence someone to prison","To put someone on trial","To officially declare someone not guilty"],a:3},
+  {s:"Vocabulary",q:"What does 'palpable' mean?",o:["Very difficult to perceive","Related to taste only","Completely invisible","Able to be clearly felt or obviously noticed"],a:3},
+  {s:"Vocabulary",q:"What does 'benefactor' mean?",o:["Someone who causes harm","Someone who exploits others","Someone who asks for help","A person who gives help or money to others"],a:3},
+  {s:"Vocabulary",q:"What does 'pungent' mean?",o:["Having a very mild flavor","Being extremely large","Having a strong, sharp smell or taste","Being completely colorless"],a:2},
+  {s:"Vocabulary",q:"What does 'exploit' mean?",o:["To discover something new","To sincerely praise someone","To use someone unfairly for your own benefit","To explore new territory"],a:2},
+  {s:"Vocabulary",q:"What does 'nonchalantly' mean?",o:["With great urgency","Angrily and aggressively","In a casually calm and relaxed manner","With great sadness"],a:2},
+  {s:"Vocabulary",q:"What does 'aloofness' mean?",o:["Being overly warm and friendly","Being emotionally distant or withdrawn","Being completely confused","Being very talkative"],a:1},
+  {s:"Vocabulary",q:"What does 'menace' mean?",o:["A type of defensive weapon","A respected leader","A sense of deep peace","A threat or source of danger"],a:3},
+  {s:"Vocabulary",q:"What does 'conviction' mean?",o:["A feeling of deep regret","A promise to a friend","A strong belief; or a formal declaration of guilt","A request for help"],a:2}
+];
+const SA=[
+  {q:"How has Ponyboy changed by the end of 'The Outsiders'? Discuss his growth AND what innocence he retains. Use at least one specific scene as evidence.",h:"Key points: (1) Growth — he hardens mentally, stays calm under pressure, processes grief without breaking down. (2) Retained innocence — picking up the broken glass shows he still cares about others' safety over using violence. He does NOT become cold like Dally. (3) The English essay is the ultimate proof he has grown AND retained his humanity. Quote Johnny's message: 'Stay gold, Ponyboy.'"},
+  {q:"Explain the significance of Ponyboy picking up the broken bottle/glass. What does this single action prove about who Ponyboy is at the end of the novel?",h:"The broken bottle could be used as a weapon (like Bob used rings as weapons), but Ponyboy picks up the glass so that nobody will get hurt walking by. This shows: (1) He still has innocence — he thinks of others, not himself. (2) He grew mentally but did NOT become violent or cold. (3) Contrast with Dally who became completely hardened. The action proves Ponyboy has 'stayed gold.'"},
+  {q:"Why does Ponyboy write his English essay? What is its purpose in the novel, and how does it connect to breaking down the Soc vs. Greaser stereotype?",h:"The essay shares the stories of Dally, Johnny, and Ponyboy to show Greasers are also human beings with feelings and pain. Purpose: break down the Soc vs. Greaser stereotype, show both groups suffer. The entire novel IS framed as this essay — the resolution literally is the essay. Randy's conversation hints at this too: even Socs suffer."},
+  {q:"Compare and contrast General Zaroff and Rainsford in 'The Most Dangerous Game.' How are they similar, and how do their differences reveal the story's moral message?",h:"Similarities: Both are skilled hunters who find excitement in the hunt. Differences: Rainsford values human life; Zaroff does not. Zaroff hunts humans for sport; Rainsford is horrified. Zaroff believes 'the strong deserve to dominate the weak'; Rainsford has a moral code. The irony: Rainsford the hunter must survive as prey — this forces him to feel what it is like to be hunted. Moral: power without ethics leads to moral corruption."},
+  {q:"How does first-person narration in 'Borders' both help AND limit the reader? What do we gain, and what do we miss?",h:"Gain: Deep empathy with the narrator — we feel his confusion and admiration of his mother's stand. Limit: We don't know WHY the mother holds so firmly to her Blackfoot identity. We only know what the child can observe. Key quote from the review sheet: 'A literary work narrated by one of the main characters creates limitations in the readers' ability to objectively analyze other characters.'"},
+  {q:"Explain the lesson Waverly learns from 'biting back your tongue' in 'Rules of the Game.' How does this lesson apply to her chess strategy?",h:"The lesson: Patience and strategic silence give you power. Wait, observe, then act. In chess: Waverly learns to control emotions, study her opponent, wait for the right moment, then strike decisively. This is exactly her mother's philosophy. Chess becomes a metaphor for their power struggle — every game mirrors mother vs. daughter tension."},
+  {q:"Choose TWO symbols from 'The Outsiders' and explain what each represents. Use specific evidence from the text.",h:"Good choices: (1) Bob's rings → wealth and physical power. The rings leave scars on Johnny's face — material wealth used as a weapon against the powerless. (2) Greaser hair → identity and belonging. When Ponyboy cuts his hair hiding in the church, he feels stripped of his Greaser identity. (3) Blue Mustang → Socs' materialism. Appears before attacks — wealth used as intimidation. (4) Watching sunsets → shared humanity between Cherry and Ponyboy despite their social divide."},
+  {q:"Explain the difference between a round character and a flat character. Give one example of each from the stories and explain your reasoning.",h:"Round: Complex, changes significantly. Best example: Ponyboy — begins naive and reactive, grows into someone who processes loss, chooses non-violence, writes the essay. Flat: Does not develop significantly. Examples: Sodapop (always easygoing), Two-Bit (always joking), Zaroff (his beliefs never waver). Explain WHY your example fits the definition."},
+  {q:"How do stereotypes create conflict in 'The Outsiders'? Provide at least TWO specific examples.",h:"Example 1: The Soc vs. Greaser label creates automatic hostility. Greasers assume all Socs are cruel enemies; Socs assume all Greasers are dangerous criminals → leads directly to attacks and the rumble. Example 2: Cherry is surprised to find Ponyboy intelligent and sensitive — the Greaser stereotype told her he would be rough and stupid. Example 3: Randy questions whether fighting is meaningful — both sides suffer, but stereotype won't let either back down."},
+  {q:"Define foreshadowing and give TWO examples from any of the texts. For each, explain what is hinted at and what actually happens.",h:"Definition: Hints or clues given early that hint at events later in the story. Example 1 (The Outsiders): The cigarette left in the abandoned church → the fire that breaks out, causing Johnny's fatal injuries while rescuing children. Example 2 (The Outsiders): Ponyboy mentions Johnny would stab someone who threatened him → foreshadows Johnny stabbing Bob to save Ponyboy from drowning. Bonus (TMDG): 'Can animals feel fear?' → humans will be the prey who feel true fear."}
+];
+const VOCAB=[
+  {w:"Unfathomable",d:"Impossible to fully understand or explore",o:["Very large and vast","Impossible to fully understand or explore","In a careless manner","A strong feeling of dread"]},
+  {w:"Gingerly",d:"In a careful or cautious manner",o:["In a careful or cautious manner","Confidently and boldly","Without any concern","Very quickly and suddenly"]},
+  {w:"Nonchalantly",d:"In a casually calm and relaxed manner",o:["With great urgency","Angrily and aggressively","In a casually calm and relaxed manner","With great sadness"]},
+  {w:"Aloofness",d:"Being distant, remote, or withdrawn",o:["Extreme friendliness","Being distant, remote, or withdrawn","A powerful smell","Total confusion"]},
+  {w:"Contemptuously",d:"Without respect; in a scornful manner",o:["Kindly and warmly","Without respect; in a scornful manner","Very quietly","In an excited way"]},
+  {w:"Premonition",d:"A strong feeling that something is about to happen",o:["A past memory recalled clearly","A formal legal punishment","A strong feeling that something is about to happen","A type of metaphor"]},
+  {w:"Indignant",d:"Feeling or showing anger about unfair treatment",o:["Feeling peaceful and content","Feeling proud of success","Feeling shy and embarrassed","Feeling angry about unfair treatment"]},
+  {w:"Conviction",d:"A strong belief; also, a formal declaration of guilt",o:["Deep regret or shame","A promise to a friend","A strong belief; also, a formal declaration of guilt","A request for help"]},
+  {w:"Implore",d:"To beg desperately or plead urgently",o:["To demand angrily","To politely suggest","To formally command","To beg desperately or plead urgently"]},
+  {w:"Exploit",d:"To use someone unfairly for one's own benefit",o:["To discover something new","To praise generously","To use someone unfairly for one's own benefit","To explore new territory"]},
+  {w:"Resemblance",d:"Similarity in appearance or character",o:["A major difference","Similarity in appearance or character","A legal document","A type of artwork"]},
+  {w:"Scarce",d:"Hard to find; limited in supply",o:["Very common and abundant","Hard to find; limited in supply","Of poor quality","Extremely large"]},
+  {w:"Conformity",d:"Following rules, norms, or the behavior of others",o:["Rebelling against authority","Complete independence","Following rules, norms, or the behavior of others","Total confusion"]},
+  {w:"Menace",d:"A threat or source of danger",o:["A type of weapon","A respected leader","A sense of peace","A threat or source of danger"]},
+  {w:"Frankly",d:"In an honest and direct manner",o:["Hesitantly and nervously","Mysteriously and secretly","In an honest and direct manner","Very formally"]},
+  {w:"Liable",d:"Legally responsible; likely to do or suffer something",o:["Free from responsibility","Completely innocent","Legally responsible; likely to do or suffer something","Officially praised"]},
+  {w:"Acquit",d:"To officially declare someone not guilty",o:["To formally charge someone","To sentence to prison","To put on trial","To officially declare someone not guilty"]},
+  {w:"Vast",d:"Of very great extent or size",o:["Extremely small and compact","Of very great extent or size","Very detailed and precise","Of little importance"]},
+  {w:"Palpable",d:"Able to be clearly felt or obviously noticed",o:["Difficult to perceive","Related to taste only","Completely invisible","Able to be clearly felt or obviously noticed"]},
+  {w:"Opaque",d:"Not transparent; difficult to understand",o:["Clear and transparent","Very bright and luminous","Not transparent; difficult to understand","Extremely fragile"]},
+  {w:"Benefactor",d:"A person who gives help or money to others",o:["Someone who causes harm","Someone who exploits others","Someone who asks for help","A person who gives help or money to others"]},
+  {w:"Pungent",d:"Having a strong, sharp smell or taste",o:["Very mild and gentle","Extremely large in scale","Having a strong, sharp smell or taste","Completely colorless"]}
+];
+
+/* ── QUIZ ENGINE ── */
+let qmode='all',qMCi=0,qSAi=0,qScore=0,qMCdone=false,qAnswered=false,qWrong=[],qMCShuffle=[];
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+function selMode(m){qmode=m;['all','mc','sa'].forEach(id=>document.getElementById('m-'+id).classList.remove('sel'));document.getElementById('m-'+m).classList.add('sel');}
+function startQuiz(){qMCi=0;qSAi=0;qScore=0;qMCdone=false;qWrong=[];qMCShuffle=shuffle(MC);document.getElementById('q-start').style.display='none';document.getElementById('q-active').style.display='block';document.getElementById('q-res').style.display='none';if(qmode==='sa'){qMCdone=true;showSA();}else{showMC();}}
+function totalQ(){if(qmode==='all')return qMCShuffle.length+SA.length;if(qmode==='mc')return qMCShuffle.length;return SA.length;}
+function curIdx(){if(qmode==='sa')return qSAi;if(qMCdone)return qMCShuffle.length+qSAi;return qMCi;}
+function updProg(){const t=totalQ(),c=curIdx();document.getElementById('pbar').style.width=(c/t*100)+'%';document.getElementById('plbl').textContent='Question '+(c+1)+' of '+t;const mc=qmode==='sa'?0:qMCShuffle.length;document.getElementById('psc').textContent=mc>0?'MC Score: '+qScore+'/'+mc:'Short Answer';}
+function showMC(){qAnswered=false;const q=qMCShuffle[qMCi];updProg();const L=['A','B','C','D'];const opts=q.o.map((o,i)=>`<button class="opt" onclick="answerMC(${i})"><span class="ol">${L[i]}</span><span>${o}</span></button>`).join('');document.getElementById('qcard').innerHTML=`<div class="qtag">${q.s}</div><div class="qnum">Question ${qMCi+1}</div><div class="qt">${q.q}</div><div class="opts">${opts}</div><div class="fb" id="fb"></div>`;document.getElementById('bnext').style.display='none';document.getElementById('bhint').style.display='none';}
+function answerMC(sel){if(qAnswered)return;qAnswered=true;const q=qMCShuffle[qMCi];const btns=document.querySelectorAll('.opt');const fb=document.getElementById('fb');btns.forEach(b=>{b.disabled=true;b.classList.add('off');});if(sel===q.a){btns[sel].classList.remove('off');btns[sel].classList.add('ok');fb.textContent='✓ Correct!';fb.className='fb ok';qScore++;}else{btns[sel].classList.remove('off');btns[sel].classList.add('bad');btns[q.a].classList.remove('off');btns[q.a].classList.add('ok');fb.textContent='✗ Incorrect. Correct: '+q.o[q.a];fb.className='fb bad';qWrong.push({q:q.q,a:q.o[q.a],s:q.s});}document.getElementById('bnext').style.display='inline-block';}
+function showSA(){qAnswered=false;const q=SA[qSAi];updProg();document.getElementById('qcard').innerHTML=`<div class="qtag">Short Answer</div><div class="qnum">Short Answer ${qSAi+1} of ${SA.length}</div><div class="qt">${q.q}</div><textarea class="sat" placeholder="Write your answer here — use specific evidence from the text..."></textarea><div class="sh" id="sahint"><div class="sht">💡 Model Answer Guide</div><div class="shb">${q.h}</div></div>`;document.getElementById('bhint').textContent='Show Answer';document.getElementById('bhint').style.display='inline-block';document.getElementById('bnext').style.display='inline-block';}
+function toggleHint(){const h=document.getElementById('sahint');if(h){h.classList.toggle('vis');document.getElementById('bhint').textContent=h.classList.contains('vis')?'Hide Answer':'Show Answer';}}
+function nextQ(){if(!qMCdone){qMCi++;if(qMCi>=qMCShuffle.length){qMCdone=true;if(qmode==='mc'){showResults();return;}showSA();}else{showMC();}}else{qSAi++;if(qSAi>=SA.length){showResults();}else{showSA();}}}
+function showResults(){document.getElementById('q-active').style.display='none';document.getElementById('q-res').style.display='block';const mc=qmode==='sa'?0:qMCShuffle.length;const pct=mc>0?Math.round(qScore/mc*100):null;document.getElementById('rn').textContent=pct!==null?qScore:'—';document.getElementById('rt').textContent=mc>0?mc:'—';let msg,sub;if(pct===null){msg='Short Answer Complete! ✍️';sub='Review the model answers to check your responses.';}else if(pct>=90){msg='Excellent! 🏆';sub='You are very well prepared for the final exam.';}else if(pct>=75){msg='Great Work! 👍';sub='Review the topics you missed and you will be ready.';}else if(pct>=60){msg='Good Effort! 📖';sub='Spend more time with the study guide on missed topics.';}else{msg='Keep Studying! 💪';sub='Go through the study guide carefully — you can do this!';}document.getElementById('rmsg').textContent=msg;document.getElementById('rsub').textContent=sub;let html='';if(qWrong.length>0){html='<h3>Review These '+qWrong.length+' Questions</h3>';qWrong.forEach(item=>{html+=`<div class="ri"><div><div class="riq">${item.q}</div><div class="ria">✓ Correct: ${item.a}</div></div></div>`;});}document.getElementById('rlist').innerHTML=html;}
+function restartQ(){document.getElementById('q-res').style.display='none';document.getElementById('q-start').style.display='block';}
+
+/* ── VOCAB ENGINE ── */
+let vi=0,vs=0,vshuffle=[],vcurropts=[],vcorrIdx=-1;
+function startVocab(){vi=0;vs=0;vshuffle=shuffle(VOCAB);document.getElementById('v-start').style.display='none';document.getElementById('v-active').style.display='block';document.getElementById('v-res').style.display='none';showVocab();}
+function showVocab(){const w=vshuffle[vi];document.getElementById('vpbar').style.width=(vi/vshuffle.length*100)+'%';document.getElementById('vplbl').textContent='Word '+(vi+1)+' of '+vshuffle.length;document.getElementById('vpsc').textContent='Score: '+vs;vcurropts=shuffle([...w.o]);vcorrIdx=vcurropts.indexOf(w.d);const L=['A','B','C','D'];const opts=vcurropts.map((o,i)=>`<button class="opt" onclick="answerVocab(${i})"><span class="ol">${L[i]}</span><span>${o}</span></button>`).join('');document.getElementById('vcard').innerHTML=`<div class="qtag">Vocabulary</div><div class="qt">What does <em style="color:var(--gold2);font-size:1.2rem">"${w.w}"</em> mean?</div><div class="opts">${opts}</div><div class="fb" id="vfb"></div>`;document.getElementById('vbnext').style.display='none';}
+function answerVocab(sel){const btns=document.querySelectorAll('#vcard .opt');const fb=document.getElementById('vfb');btns.forEach(b=>{b.disabled=true;b.classList.add('off');});if(sel===vcorrIdx){btns[sel].classList.remove('off');btns[sel].classList.add('ok');fb.textContent='✓ Correct!';fb.className='fb ok';vs++;document.getElementById('vpsc').textContent='Score: '+vs;}else{btns[sel].classList.remove('off');btns[sel].classList.add('bad');btns[vcorrIdx].classList.remove('off');btns[vcorrIdx].classList.add('ok');fb.textContent='✗ Incorrect. Correct: '+vcurropts[vcorrIdx];fb.className='fb bad';}document.getElementById('vbnext').style.display='inline-block';}
+function nextVocab(){vi++;if(vi>=vshuffle.length){document.getElementById('v-active').style.display='none';document.getElementById('v-res').style.display='block';const pct=Math.round(vs/vshuffle.length*100);document.getElementById('vrn').textContent=vs;let m='Keep practicing!';if(pct>=95)m='Vocabulary Master! 🏆';else if(pct>=80)m='Excellent! 👍';else if(pct>=65)m='Good work! 📖';document.getElementById('vrmsg').textContent=m;}else{showVocab();}}
+</script>
+</body>
+</html>
